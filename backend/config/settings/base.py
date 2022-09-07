@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRET_KEY
+SECRET_KEY = "django-insecure-ip6c01dupn+m!iztk@wks&jrjnmb7j$w8*a$yn-+asc_u-l0qc"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,9 +38,13 @@ INSTALLED_APPS = [
     "django_filters",
     "djoser",
     "corsheaders",
+    "constance",
     "constance.backends.database",
+    "ckeditor",
+    "versatileimagefield",
     # myapps
     "users",
+    "posts",
 ]
 
 MIDDLEWARE = [
@@ -132,3 +136,23 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
+
+
+CONSTANCE_ADDITIONAL_FIELDS = {
+    "language_select": [
+        "django.forms.fields.ChoiceField",
+        {
+            "widget": "django.forms.Select",
+            "choices": (("EN", "English"), ("NO", "Norway")),
+        },
+    ],
+}
+
+CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
+CONSTANCE_CONFIG = {"LANGUAGE": ("EN", "Select Language", "language_select")}
+
+
+STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
