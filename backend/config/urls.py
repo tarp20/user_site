@@ -8,13 +8,18 @@ from rest_framework_swagger.views import get_swagger_view
 from rest_framework.routers import DefaultRouter
 
 from posts.views import PostViewSet
+from videos.views import VideoViewSet
 
 scema_view = get_swagger_view(title="Two DEMO API")
 router = DefaultRouter()
 
 router.register(r"posts", PostViewSet, basename="shops")
+router.register(r"videos", VideoViewSet, basename="shops")
 
-urlpatterns = [path("admin/", admin.site.urls), path("swagger/", scema_view)]
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("swagger/", scema_view),
+]
 
 
 urlpatterns += router.urls
