@@ -9,12 +9,14 @@ from rest_framework.routers import DefaultRouter
 
 from posts.views import PostViewSet
 from videos.views import VideoViewSet
+from files.views import FileViewSet
 
 scema_view = get_swagger_view(title="Two DEMO API")
 router = DefaultRouter()
 
-router.register(r"posts", PostViewSet, basename="shops")
-router.register(r"videos", VideoViewSet, basename="shops")
+router.register(r"posts", PostViewSet, basename="post")
+router.register(r"videos", VideoViewSet, basename="video")
+router.register(r"files", FileViewSet, basename="file")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
